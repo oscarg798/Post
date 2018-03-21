@@ -6,5 +6,5 @@ package co.com.data.entities
 data class APIAddress(val street: String,
                       val suite: String,
                       val city: String,
-                      val zipCode: String,
+                      val zipCode: String?,
                       val geo: APIGeo)

@@ -13,7 +13,7 @@ import javax.inject.Inject
  */
 class PostRepository : IPostRepository {
 
-    override var cachePosts: ArrayList<APIPost>? = null
+    override var mCachePosts: List<APIPost>? = null
 
     @Inject
     lateinit var mPostRoute: IPostRoute
@@ -22,11 +22,11 @@ class PostRepository : IPostRepository {
     lateinit var mPostDAO: PostDAO
 
     override fun getPosts(shouldRefresh: Boolean): Observable<List<APIPost>> {
-        if (shouldRefresh || cachePosts === null) {
-            return mPostRoute.getPosts()
+        if (shouldRefresh || mCachePosts === null) {
+            return mPostRoute.getPosts().doOnNext { mCachePosts = it }
         }
 
-        return Observable.just(cachePosts)
+        return Observable.just(mCachePosts)
     }
 
     override fun savePosts(dbPosts: List<DBPost>) {
@@ -43,5 +43,13 @@ class PostRepository : IPostRepository {
 
     override fun getPost(id: Int): DBPost? {
         return mPostDAO.get(id)
+    }
+
+    override fun getPostCount(): Int {
+        return mPostDAO.count()
+    }
+
+    override fun getPostFromDB(): List<DBPost> {
+        return mPostDAO.getAll()
     }
 }

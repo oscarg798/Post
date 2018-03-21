@@ -14,5 +14,6 @@ import javax.inject.Singleton
 class AppModule(private val mApp: Application) {
 
     @Provides
+    @Singleton
     fun providesContext(): Context = mApp
 }

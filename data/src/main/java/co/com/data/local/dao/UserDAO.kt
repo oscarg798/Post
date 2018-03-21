@@ -10,7 +10,7 @@ import io.reactivex.Flowable
 @Dao
 interface UserDAO {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(dbUser: DBUser)
 
     @Query("Select * from user")
@@ -19,7 +19,7 @@ interface UserDAO {
     @Query("Select * from user where id=:id")
     fun get(id: Int): DBUser
 
-    @Update(onConflict = OnConflictStrategy.REPLACE)
+    @Update(onConflict = OnConflictStrategy.IGNORE)
     fun update(dbUser: DBUser)
 
     @Delete

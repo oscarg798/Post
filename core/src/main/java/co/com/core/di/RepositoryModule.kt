@@ -16,22 +16,29 @@ import javax.inject.Singleton
 @Module
 class RepositoryModule(private val mContext:Context) {
 
+
     @Provides
+    @Singleton
     fun providesRepositoryFactory(context: Context): IRepositoryFactory {
         return RepositoryFactory(context)
     }
 
     @Provides
+    @Singleton
     fun providesPostRepository(repositoryFactory: IRepositoryFactory): IPostRepository {
         return repositoryFactory.mPostRepository
     }
 
+
     @Provides
+    @Singleton
     fun providesUserRepository(repositoryFactory: IRepositoryFactory):IUserRepository{
         return repositoryFactory.mUserRepository
     }
 
+
     @Provides
+    @Singleton
     fun provideContext():Context = mContext
 
 

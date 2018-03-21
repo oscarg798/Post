@@ -4,7 +4,11 @@ import android.content.Context
 import co.com.core.di.DaggerRepositoryComponent
 import co.com.core.di.RepositoryModule
 import co.com.core.entities.Post
+import co.com.core.entities.User
 import co.com.core.use_cases.post.GetPostSingleUseCase
+import co.com.core.use_cases.post.MakePostFavoriteUseCase
+import co.com.core.use_cases.user.GetUserByIdUseCase
+import co.com.core.use_cases.user.GetUsersUseCase
 import io.reactivex.Scheduler
 
 /**
@@ -23,5 +27,24 @@ class UseCaseFactory(mContext: Context) : IUseCaseFactory {
         mRepositoryComponent?.inject(useCase)
         return useCase
 
+    }
+
+    override fun getUsersUseCase(subscribeScheduler: Scheduler, observerScheduler: Scheduler):
+            SingleUseCase<List<User>, Any?> {
+        val useCase = GetUsersUseCase(subscribeScheduler, observerScheduler)
+        mRepositoryComponent?.inject(useCase)
+        return useCase
+    }
+
+    override fun getUserByIdUseCase(subscribeScheduler: Scheduler, observerScheduler: Scheduler): SingleUseCase<User, Int> {
+        val useCase = GetUserByIdUseCase(subscribeScheduler, observerScheduler)
+        mRepositoryComponent?.inject(useCase)
+        return useCase
+    }
+
+    override fun getMakePostFavoriteUseCase(subscribeScheduler: Scheduler, observerScheduler: Scheduler): CompletableUseCase<Pair<Int, Boolean>> {
+        val useCase = MakePostFavoriteUseCase(subscribeScheduler, observerScheduler)
+        mRepositoryComponent?.inject(useCase)
+        return useCase
     }
 }

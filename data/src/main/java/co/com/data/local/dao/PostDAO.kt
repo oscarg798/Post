@@ -10,7 +10,7 @@ import io.reactivex.Flowable
 @Dao
 interface PostDAO {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(dbPost: DBPost)
 
     @Query("Select * from post")
@@ -22,7 +22,7 @@ interface PostDAO {
     @Query("Select * from post where favorite=1")
     fun getFavorites(): List<DBPost>
 
-    @Update(onConflict = OnConflictStrategy.ABORT)
+    @Update(onConflict = OnConflictStrategy.IGNORE)
     fun update(dbPost: DBPost)
 
     @Delete
@@ -30,6 +30,9 @@ interface PostDAO {
 
     @Query("Delete from post")
     fun deleteAll()
+
+    @Query("Select COUNT(*) from post")
+    fun count(): Int
 
 
 }

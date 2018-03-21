@@ -10,5 +10,5 @@ data class APIUser(val id: Int,
                    val email: String,
                    val phone: String,
                    val website: String,
-                   val company: DBCompany,
-                   val address: DBAddress)
+                   val company: APICompany,
+                   val address: APIAddress)

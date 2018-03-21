@@ -10,5 +10,5 @@ import android.arch.persistence.room.Entity
 data class DBAddress(val street: String,
                      val suite: String,
                      val city: String,
-                     val zipCode: String,
+                     val zipCode: String?,
                      @Embedded val geo:DBGeo)
