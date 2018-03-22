@@ -1,4 +1,10 @@
+# Installation
+Import the project on Android Studio. And run it, or with gradle from a terminal 
 
+1. go to the project folder 
+2. ./gradlew assembleRelease
+
+this will generate two  apk files than you can find in app/build/outputs/apk/ 
 
 # Description
 
@@ -44,6 +50,8 @@ On this Project I have used mainly  Dagger2, RXJava (RXAndroid), Retrofit, Andro
 3. **Retrofit**: Http request library, I have try apache http, UrlConnection but retrofit is just awesome, Before retrofit I used to spend at least 1 day setting up my Http request module, and even with a good code implementation handle the erros was a mess. 
 4. **Android Arch**: Lifecycle observer library. Before this we have the context awareness problem, how to properly know the state of an activity or a fragment,this lib has been a helping me with this 
 5. **Mockito**: Mock Library. In this project I did not mock any POJO but I mocked some Dagger components
+
+
 
 
 
