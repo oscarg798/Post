@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView
 import co.com.core.entities.Post
 import co.com.core.use_cases.ICompletableUseCase
 import co.com.currencyexchange.core.use_cases.base.ISingleUseCase
+import co.com.post.R
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableCompletableObserver
 import io.reactivex.observers.DisposableSingleObserver
@@ -30,8 +31,16 @@ class PostListFragmentPresenter : IPostListFragmentPresenter {
     @Inject
     lateinit var mDeletePostUseCase: ICompletableUseCase<Int>
 
+    @Inject
+    lateinit var mDeleteAllPostUseCase: ICompletableUseCase<Any?>
+
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    private fun getPosts() {
+    private fun onResume() {
+        getPost(false)
+
+    }
+
+    private fun getPost(useAPI: Boolean) {
         mView?.showProgressBar()
 
         val disposable = object : DisposableSingleObserver<List<Post>>() {
@@ -53,13 +62,13 @@ class PostListFragmentPresenter : IPostListFragmentPresenter {
         }
 
         mDisposableBag.add(disposable)
-        mGetPostUseCase.execute(false, disposable)
-
+        mGetPostUseCase.execute(useAPI, disposable)
     }
 
     override fun postSelected(post: Post) {
         mView?.showPost(post)
     }
+
 
     override fun onSwipe(viewHolder: RecyclerView.ViewHolder?, direction: Int) {
         viewHolder?.let { holder ->
@@ -84,6 +93,36 @@ class PostListFragmentPresenter : IPostListFragmentPresenter {
 
 
         }
+    }
+
+    override fun onMenuItemSelected(itemId: Int) {
+        when (itemId) {
+            R.id.navigation_refresh -> {
+                getPost(true)
+            }
+            else -> {
+                deleteAllPost()
+            }
+        }
+    }
+
+    private fun deleteAllPost() {
+        mView?.showProgressBar()
+        val disposable = object : DisposableCompletableObserver() {
+            override fun onComplete() {
+                mView?.clear()
+                mView?.hideProgressBar()
+                mDisposableBag.remove(this)
+            }
+
+            override fun onError(e: Throwable) {
+                e.printStackTrace()
+                mView?.hideProgressBar()
+                mDisposableBag.remove(this)
+            }
+        }
+        mDisposableBag.add(disposable)
+        mDeleteAllPostUseCase.execute(null, disposable)
     }
 
 

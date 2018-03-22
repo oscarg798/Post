@@ -4,7 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import co.com.post.BaseApplication
-import co.com.post.MainActivity
+import co.com.post.main.MainActivity
 import co.com.post.R
 
 class SplashActivity : AppCompatActivity(), ISplashActivityView {

@@ -26,7 +26,7 @@ class GetPostSingleUseCase(mSubscribeOnScheduler: Scheduler,
         return Single.create<Int> {
             it.onSuccess(mPostRepository.getPostCount())
         }.flatMap {
-            if (it > 0) {
+            if (it == 0 || params) {
                 Single.fromObservable(mPostRepository.getPosts(params))
             } else {
                 Single.create<List<DBPost>> {

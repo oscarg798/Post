@@ -5,6 +5,7 @@ import co.com.core.di.DaggerRepositoryComponent
 import co.com.core.di.RepositoryModule
 import co.com.core.entities.Post
 import co.com.core.entities.User
+import co.com.core.use_cases.post.DeleteAllPostUseCase
 import co.com.core.use_cases.post.DeletePostUseCase
 import co.com.core.use_cases.post.GetPostSingleUseCase
 import co.com.core.use_cases.post.MakePostFavoriteUseCase
@@ -51,6 +52,12 @@ class UseCaseFactory(mContext: Context) : IUseCaseFactory {
 
     override fun getDeletePostUseCase(subscribeScheduler: Scheduler, observerScheduler: Scheduler): CompletableUseCase<Int> {
         val useCase = DeletePostUseCase(subscribeScheduler, observerScheduler)
+        mRepositoryComponent?.inject(useCase)
+        return useCase
+    }
+
+    override fun getDeleteAllPostsUseCase(subscribeScheduler: Scheduler, observerScheduler: Scheduler): CompletableUseCase<Any?> {
+        val useCase = DeleteAllPostUseCase(subscribeScheduler, observerScheduler)
         mRepositoryComponent?.inject(useCase)
         return useCase
     }

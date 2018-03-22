@@ -13,4 +13,6 @@ interface IPostListFragmentPresenter : IBasePresenter<IPostListFragmentView>,
 
     fun onSwipe(viewHolder: RecyclerView.ViewHolder?, direction: Int)
 
+    fun onMenuItemSelected(itemId: Int)
+
 }

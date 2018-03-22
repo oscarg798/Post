@@ -1,5 +1,6 @@
 package co.com.core.di
 
+import co.com.core.use_cases.post.DeleteAllPostUseCase
 import co.com.core.use_cases.post.DeletePostUseCase
 import co.com.core.use_cases.post.GetPostSingleUseCase
 import co.com.core.use_cases.post.MakePostFavoriteUseCase
@@ -24,4 +25,6 @@ interface RepositoryComponent{
     fun inject(makePostFavoriteUseCase: MakePostFavoriteUseCase)
 
     fun inject(deletePostUseCase: DeletePostUseCase)
+
+    fun inject(deleteAllPostUseCase: DeleteAllPostUseCase)
 }

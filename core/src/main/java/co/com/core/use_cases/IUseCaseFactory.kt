@@ -23,4 +23,7 @@ interface IUseCaseFactory {
 
     fun getDeletePostUseCase(subscribeScheduler: Scheduler,
                              observerScheduler: Scheduler): CompletableUseCase<Int>
+
+    fun getDeleteAllPostsUseCase(subscribeScheduler: Scheduler,
+                                 observerScheduler: Scheduler): CompletableUseCase<Any?>
 }

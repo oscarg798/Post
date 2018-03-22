@@ -54,4 +54,10 @@ class UsecaseModule {
         return useCaseFactory.getDeletePostUseCase(Schedulers.io(), AndroidSchedulers.mainThread())
     }
 
+    @Provides
+    @Singleton
+    fun providesDeleteAllPostUseCase(useCaseFactory: IUseCaseFactory):ICompletableUseCase<Any?>{
+        return useCaseFactory.getDeleteAllPostsUseCase(Schedulers.io(), AndroidSchedulers.mainThread())
+    }
+
 }

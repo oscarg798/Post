@@ -7,7 +7,9 @@ import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import co.com.core.entities.Post
@@ -76,6 +78,13 @@ class PostListFragment : Fragment(), IPostListFragmentView {
 
     }
 
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        item?.let {
+            mPresenter.onMenuItemSelected(it.itemId)
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     override fun isDeviceOnLandscape(): Boolean {
         activity?.let {
             return it.resources.configuration.orientation != Configuration.ORIENTATION_PORTRAIT
@@ -85,10 +94,12 @@ class PostListFragment : Fragment(), IPostListFragmentView {
     }
 
     override fun showProgressBar() {
+        mRVPost?.visibility =View.GONE
         mPBPost?.visibility = View.VISIBLE
     }
 
     override fun hideProgressBar() {
+        mRVPost?.visibility =View.VISIBLE
         mPBPost?.visibility = View.GONE
     }
 

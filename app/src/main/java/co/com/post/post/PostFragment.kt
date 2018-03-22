@@ -70,6 +70,8 @@ class PostFragment : Fragment(), IPostFragmentView {
     }
 
 
+
+
     companion object {
 
         fun newInstance(post: Post): PostFragment {
