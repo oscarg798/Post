@@ -7,6 +7,9 @@ The app is written on kotlin, because is awesome, smarter than java, and I have 
 
 The app works on portrait and landscape. If the orientation is portrait it will show the post list, and then when you click on a post it will show the detail, if its landscape the posts and details will be shown at the same time. 
 
+The 20 first posts shows a blue dot than indicates that a post has been read or not, also each post has a heart icon that indicates if the post is a favorite or not, you can make add or remove a post from  favorites just clicking the heart icon.
+
+
 **Portrait Screenshot**
 
 <img src="https://i.imgur.com/s2HskPJ.png" width="150">
