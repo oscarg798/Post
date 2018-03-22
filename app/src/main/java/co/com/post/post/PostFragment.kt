@@ -1,8 +1,10 @@
 package co.com.post.post
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import co.com.core.entities.Post
@@ -37,13 +39,13 @@ class PostFragment : Fragment(), IPostFragmentView {
     }
 
     override fun showProgressBar() {
-        mTVAuthorName?.visibility = View.GONE
+        mTVAuthor?.visibility = View.GONE
         mPBPostDetail?.visibility = View.VISIBLE
 
     }
 
     override fun hideProgressBar() {
-        mTVAuthorName?.visibility = View.VISIBLE
+        mTVAuthor?.visibility = View.VISIBLE
         mPBPostDetail?.visibility = View.GONE
     }
 
@@ -69,7 +71,19 @@ class PostFragment : Fragment(), IPostFragmentView {
         return arguments
     }
 
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        val orientation = activity?.resources?.configuration?.orientation
+                ?: Configuration.ORIENTATION_PORTRAIT
+        if (orientation != Configuration.ORIENTATION_PORTRAIT) {
+            showPostTitle("")
+            showPostBody("")
+            showPostUserName("")
+            showPostUserEmail("")
+            mTVAuthor?.visibility = View.GONE
 
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
 
     companion object {
