@@ -24,4 +24,6 @@ interface IPostRepository {
     fun getPostCount(): Int
 
     fun getPostFromDB(): List<DBPost>
+
+    fun deletePost(dbPost: DBPost)
 }

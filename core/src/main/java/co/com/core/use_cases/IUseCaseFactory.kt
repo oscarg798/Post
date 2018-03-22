@@ -19,4 +19,8 @@ interface IUseCaseFactory {
 
     fun getMakePostFavoriteUseCase(subscribeScheduler: Scheduler,
                                    observerScheduler: Scheduler): CompletableUseCase<Pair<Int, Boolean>>
+
+
+    fun getDeletePostUseCase(subscribeScheduler: Scheduler,
+                             observerScheduler: Scheduler): CompletableUseCase<Int>
 }

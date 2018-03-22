@@ -5,4 +5,5 @@ package co.com.data
  */
 const val BASEURL = "https://jsonplaceholder.typicode.com/"
 const val DATE_FORMAT = "yyyy-MM-dd"
-const  val DATABASE_NAME = "post.db"
+const val DATABASE_NAME = "post.db"
+const val POST_KEY = "post"

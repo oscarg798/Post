@@ -52,4 +52,8 @@ class PostRepository : IPostRepository {
     override fun getPostFromDB(): List<DBPost> {
         return mPostDAO.getAll()
     }
+
+    override fun deletePost(dbPost: DBPost) {
+        mPostDAO.delete(dbPost)
+    }
 }

@@ -44,8 +44,14 @@ class UsecaseModule {
 
     @Provides
     @Singleton
-    fun provideMakePostFavoriteUseCase(useCaseFactory: IUseCaseFactory): ICompletableUseCase<Pair<Int, Boolean>>{
+    fun providesMakePostFavoriteUseCase(useCaseFactory: IUseCaseFactory): ICompletableUseCase<Pair<Int, Boolean>> {
         return useCaseFactory.getMakePostFavoriteUseCase(Schedulers.io(), AndroidSchedulers.mainThread())
+    }
+
+    @Provides
+    @Singleton
+    fun providesDeletePostUseCase(useCaseFactory: IUseCaseFactory): ICompletableUseCase<Int> {
+        return useCaseFactory.getDeletePostUseCase(Schedulers.io(), AndroidSchedulers.mainThread())
     }
 
 }

@@ -1,14 +1,18 @@
 package co.com.post.post_list
 
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import co.com.core.entities.Post
 import co.com.post.BaseApplication
+import co.com.post.IShowPostCallback
 import co.com.post.R
 import kotlinx.android.synthetic.main.fragment_post_list.*
 
@@ -18,12 +22,12 @@ class PostListFragment : Fragment(), IPostListFragmentView {
     lateinit var mPresenter: IPostListFragmentPresenter
 
 
-
     override fun onAttach(context: Context?) {
         super.onAttach(context)
 
 
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val presenter = PostListFragmentPresenter()
@@ -33,6 +37,10 @@ class PostListFragment : Fragment(), IPostListFragmentView {
         mPresenter.bind(this)
 
 
+    }
+
+    override fun showPost(post: Post) {
+        (activity as? IShowPostCallback)?.show(post)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +59,29 @@ class PostListFragment : Fragment(), IPostListFragmentView {
         mRVPost?.layoutManager = LinearLayoutManager(activity)
         mRVPost?.setHasFixedSize(false)
         mRVPost?.adapter = PostRVAdapter(mCallbacks = mPresenter)
+        mRVPost?.adapter?.let { adapter ->
+            activity?.let {
+                val swipeHandler = object : SwipeToDeleteCallback(it) {
+                    override fun onSwiped(viewHolder: RecyclerView.ViewHolder?, direction: Int) {
+                        mPresenter.onSwipe(viewHolder, direction)
+                    }
+
+
+                }
+                val itemTouchHelper = ItemTouchHelper(swipeHandler)
+                itemTouchHelper.attachToRecyclerView(mRVPost)
+            }
+        }
+
+
+    }
+
+    override fun isDeviceOnLandscape(): Boolean {
+        activity?.windowManager?.let {
+            return activity!!.resources.configuration.orientation != Configuration.ORIENTATION_PORTRAIT
+        }
+
+        return false
     }
 
     override fun showProgressBar() {
@@ -74,6 +105,13 @@ class PostListFragment : Fragment(), IPostListFragmentView {
         (mRVPost?.adapter as? PostRVAdapter)?.update(post)
     }
 
+    override fun deletePost(position: Int) {
+        (mRVPost?.adapter as? PostRVAdapter)?.delete(position)
+    }
+
+    override fun getPostFromAdapter(position: Int): Post? {
+        return (mRVPost?.adapter as? PostRVAdapter)?.getPost(position)
+    }
 
     companion object {
 

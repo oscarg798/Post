@@ -1,6 +1,8 @@
 package co.com.post.di
 
+import co.com.post.post.PostFragmentPresenter
 import co.com.post.post_list.PostListFragmentPresenter
+import co.com.post.splash.SplashActivityPresenter
 import dagger.Component
 import javax.inject.Singleton
 
@@ -12,4 +14,8 @@ import javax.inject.Singleton
 interface AppComponent {
 
     fun inject(postListFragmentPresenter: PostListFragmentPresenter)
+
+    fun inject(postFragmentPresenter: PostFragmentPresenter)
+
+    fun inject(splashActivityPresenter: SplashActivityPresenter)
 }

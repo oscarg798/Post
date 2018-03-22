@@ -1,0 +1,75 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context="co.com.post.post.PostFragment">
+
+    <TextView
+        android:id="@+id/mTVPostTitle"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/roboto_medium"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Title" />
+
+
+    <TextView
+        android:id="@+id/mTVPostBody"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/roboto"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mTVPostTitle"
+        tools:text="@string/hello_blank_fragment" />
+
+
+    <TextView
+        android:id="@+id/mTVAuthor"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/roboto_medium_italic"
+        android:padding="8dp"
+        android:text="@string/author_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mTVPostBody" />
+
+    <TextView
+        android:id="@+id/mTVAuthorName"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/roboto"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mTVAuthor"
+        tools:text="Oscar Gallon" />
+
+    <TextView
+        android:id="@+id/mTVAuthorEmail"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/roboto"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mTVAuthorName"
+        tools:text="oscarg798@gmail.com" />
+
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mPBPostDetail"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>

@@ -66,4 +66,19 @@ class PostRVAdapter(private val mPostList: ArrayList<Post> = ArrayList(),
         }
 
     }
+
+    fun delete(position: Int) {
+        if (mPostList.size > position) {
+            mPostList.removeAt(position)
+            notifyItemRemoved(position)
+        }
+    }
+
+    fun getPost(position:Int): Post? {
+        if (mPostList.size > position) {
+            return mPostList[position]
+        }
+
+        return null
+    }
 }

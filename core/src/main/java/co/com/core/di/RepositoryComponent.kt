@@ -1,5 +1,6 @@
 package co.com.core.di
 
+import co.com.core.use_cases.post.DeletePostUseCase
 import co.com.core.use_cases.post.GetPostSingleUseCase
 import co.com.core.use_cases.post.MakePostFavoriteUseCase
 import co.com.core.use_cases.user.GetUserByIdUseCase
@@ -21,4 +22,6 @@ interface RepositoryComponent{
     fun inject(getUserByIdUseCase: GetUserByIdUseCase)
 
     fun inject(makePostFavoriteUseCase: MakePostFavoriteUseCase)
+
+    fun inject(deletePostUseCase: DeletePostUseCase)
 }

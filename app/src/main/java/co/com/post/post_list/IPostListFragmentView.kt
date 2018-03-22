@@ -14,4 +14,12 @@ interface IPostListFragmentView : IBaseView {
 
     fun updatePost(post: Post)
 
+    fun deletePost(position: Int)
+
+    fun getPostFromAdapter(position: Int): Post?
+
+    fun showPost(post: Post)
+
+    fun isDeviceOnLandscape():Boolean
+
 }
