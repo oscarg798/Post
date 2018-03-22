@@ -3,6 +3,7 @@ package co.com.post.post_list
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.OnLifecycleEvent
 import android.support.v7.widget.RecyclerView
+import android.widget.CompoundButton
 import co.com.core.entities.Post
 import co.com.core.use_cases.ICompletableUseCase
 import co.com.currencyexchange.core.use_cases.base.ISingleUseCase
@@ -69,7 +70,6 @@ class PostListFragmentPresenter : IPostListFragmentPresenter {
         mView?.showPost(post)
     }
 
-
     override fun onSwipe(viewHolder: RecyclerView.ViewHolder?, direction: Int) {
         viewHolder?.let { holder ->
 
@@ -125,7 +125,6 @@ class PostListFragmentPresenter : IPostListFragmentPresenter {
         mDeleteAllPostUseCase.execute(null, disposable)
     }
 
-
     override fun favoriteButtonClick(post: Post) {
         val disposable = object : DisposableCompletableObserver() {
             override fun onComplete() {
@@ -143,6 +142,22 @@ class PostListFragmentPresenter : IPostListFragmentPresenter {
         }
         mDisposableBag.add(disposable)
         mMakePostFavoriteUseCase.execute(Pair(post.id, !post.favorite), disposable)
+    }
+
+    override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
+        if (isChecked) {
+            val posts = mView?.getPost()
+            posts?.let {
+                val favoritePosts = posts.filter {
+                    it.favorite
+
+                }
+                mView?.showPosts(favoritePosts)
+            }
+        } else {
+            getPost(false)
+        }
+
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)

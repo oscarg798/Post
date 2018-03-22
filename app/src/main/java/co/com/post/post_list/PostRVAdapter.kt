@@ -74,7 +74,11 @@ class PostRVAdapter(private val mPostList: ArrayList<Post> = ArrayList(),
         }
     }
 
-    fun getPost(position:Int): Post? {
+    fun getPostOnAdapter(): ArrayList<Post> {
+        return mPostList
+    }
+
+    fun getPost(position: Int): Post? {
         if (mPostList.size > position) {
             return mPostList[position]
         }

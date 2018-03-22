@@ -20,6 +20,8 @@ interface IPostListFragmentView : IBaseView {
 
     fun showPost(post: Post)
 
-    fun isDeviceOnLandscape():Boolean
+    fun isDeviceOnLandscape(): Boolean
+
+    fun getPost(): ArrayList<Post>?
 
 }

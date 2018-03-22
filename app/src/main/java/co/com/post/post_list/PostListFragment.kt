@@ -75,11 +75,16 @@ class PostListFragment : Fragment(), IPostListFragmentView {
             }
         }
 
+        mSwitchFilter?.setOnCheckedChangeListener(mPresenter)
+
 
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         item?.let {
+            mSwitchFilter?.setOnCheckedChangeListener { _, _ -> }
+            mSwitchFilter?.isChecked = false
+            mSwitchFilter?.setOnCheckedChangeListener(mPresenter)
             mPresenter.onMenuItemSelected(it.itemId)
         }
         return super.onOptionsItemSelected(item)
@@ -94,17 +99,21 @@ class PostListFragment : Fragment(), IPostListFragmentView {
     }
 
     override fun showProgressBar() {
-        mRVPost?.visibility =View.GONE
+        mRVPost?.visibility = View.GONE
         mPBPost?.visibility = View.VISIBLE
     }
 
     override fun hideProgressBar() {
-        mRVPost?.visibility =View.VISIBLE
+        mRVPost?.visibility = View.VISIBLE
         mPBPost?.visibility = View.GONE
     }
 
     override fun clear() {
         (mRVPost?.adapter as? PostRVAdapter)?.clear()
+    }
+
+    override fun getPost(): ArrayList<Post>? {
+        return (mRVPost?.adapter as? PostRVAdapter)?.getPostOnAdapter()
     }
 
     override fun showPosts(post: List<Post>) {
