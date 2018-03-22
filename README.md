@@ -9,10 +9,12 @@ The app works on portrait and landscape. If the orientation is portrait it will 
 
 The 20 first posts shows a blue dot than indicates that a post has been read or not, also each post has a heart icon that indicates if the post is a favorite or not, you can make add or remove a post from  favorites just clicking the heart icon.
 
+There a switch button to filter the post by favorite property
+
 
 **Portrait Screenshot**
 
-<img src="https://i.imgur.com/s2HskPJ.png" width="150">
+<img src="https://i.imgur.com/vDkAkph.png" width="150">
 
 
 **Lanscape Screenshot**
