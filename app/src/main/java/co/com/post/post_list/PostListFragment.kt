@@ -77,8 +77,8 @@ class PostListFragment : Fragment(), IPostListFragmentView {
     }
 
     override fun isDeviceOnLandscape(): Boolean {
-        activity?.windowManager?.let {
-            return activity!!.resources.configuration.orientation != Configuration.ORIENTATION_PORTRAIT
+        activity?.let {
+            return it.resources.configuration.orientation != Configuration.ORIENTATION_PORTRAIT
         }
 
         return false
